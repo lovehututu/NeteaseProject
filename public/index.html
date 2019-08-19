@@ -3,15 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=no"">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1356332_42vclzd44qh.css">
     <title>vue_netease</title>
   </head>
+  <style>
+      /* .swiper-pagination .swiper-pagination-bullet{
+        width: 58px;
+        height: 8px;
+        border-radius: 4px;
+        background: red;
+        opacity: 0.2;
+      }
+      .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+        opacity: 1;
+        background: red;
+      } */
+  </style>
   <body>
-    <noscript>
-      <strong>We're sorry but vue_netease doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+
+    function rem(){
+      var width = document.documentElement.clientWidth;
+      var styleNode = document.createElement('style');
+      styleNode.innerHTML = 'html{font-size: '+ width/10 +'px !important;}'
+      document.head.appendChild(styleNode);
+    }
+
+    window.addEventListener('pageshow', function () {
+      rem()
+    })
+
+    var timer
+    window.addEventListener('resize',()=>{
+      if(timer) clearTimeout(timer)
+      timer = setTimeout(() => {
+        rem()
+        console.log(111)
+      }, 300);
+    })
+
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
 </html>
