@@ -70,38 +70,14 @@
   </div>
 
 
-  <SelfShop></SelfShop>
+<SelfShop></SelfShop>
 
 
   <div class="shopListContent">
     <ul class="shopList">
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
-      </li>
-      <li class="shopItem">
-        <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-        <span>新品</span>
+      <li class="shopItem" v-for="(item,index) in category" :key="index">
+        <img :src="item.picUrl" alt="">
+        <span>{{item.text}}</span>
       </li>
     </ul>
   </div>
@@ -137,7 +113,9 @@
   </div> 
   <div class="line"></div>
   <NewSwiper></NewSwiper>
-  <CategoryItem></CategoryItem>
+  <div class="category">
+    <CategoryItem></CategoryItem>
+  </div>
 </div>
 </template>
 
@@ -148,11 +126,13 @@ import 'swiper/dist/css/swiper.css'
 import NewSwiper from '../../components/NewSwiper/NewSwiper'
 import SelfShop from '../../components/SelfShop/SelfShop'
 import CategoryItem from '../../components/CategoryItem/CategoryItem'
+
   export default {
     data() {
       return {
         showdetail:false,
-        showrotate:false
+        showrotate:false,
+        category:[]
       }
     },
     components:{
@@ -166,7 +146,9 @@ import CategoryItem from '../../components/CategoryItem/CategoryItem'
         this.showrotate = ! this.showrotate
       }
     },
+
     mounted() {
+      this.$store.dispatch('getCategory',()=>{this.category=this.$store.state.index.category.data})
       new Swiper ('.swiper-container', {
         loop: true, // 无缝选项
         // autoplay :true,
@@ -366,7 +348,7 @@ import CategoryItem from '../../components/CategoryItem/CategoryItem'
           width rem(110)
           height rem(110)
         span
-          font-size rem(32)
+          font-size rem(28)
   .line
     width 100%
     margin-top rem(20)
@@ -471,5 +453,7 @@ import CategoryItem from '../../components/CategoryItem/CategoryItem'
             text-align center
             font-size rem(22)
             line-height rem(34)
-
+  .category
+    height 100%
+    width 100%
 </style>

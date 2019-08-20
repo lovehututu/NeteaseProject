@@ -9,53 +9,8 @@
     <div class="categoryContainer">
       <div class="categorys">
         <ul class="categoryList">
-          <li class="categoryItem active">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
-          </li>
-          <li class="categoryItem">
-            推荐专区
+          <li class="categoryItem" :class="{active:false}" v-for="(item,index) in categorys" :key="index">
+            {{item.name}}
           </li>
         </ul>
       </div>
@@ -150,8 +105,18 @@
 
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll'
+import {mapState} from 'vuex'
   export default {
+    data() {
+      return {
+        // categorys:[],
+      }
+    },
+    computed:{
+      ...mapState({categorys:(state)=>state.cate.categorys})
+    },
     mounted() {
+      this.$store.dispatch('getCategorys')
       new BScroll(".categoryInfo",{
           scrollY:true
       })
@@ -165,6 +130,11 @@ import BScroll from 'better-scroll'
         }
       })
     },
+    // watch: {
+    //   categorys(){
+    //     this.categorys = this.$store.state.cate.categorys.data
+    //   }
+    // },
   }
 </script>
 

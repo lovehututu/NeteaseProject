@@ -58,8 +58,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Swiper from 'swiper'
-import 'swiper/dist/css/swiper.css'
+
   export default {
 
   }

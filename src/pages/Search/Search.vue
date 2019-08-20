@@ -3,24 +3,45 @@
     <div class="searchcontent">
       <header class="title">
         <i class="iconfont icon-sousuo"></i>
-        <input type="text" placeholder="请输入商品名称"/>
+        <input type="text" :placeholder="placeholder" @keyup="search" v-model="searchwords" />
         <button class="close" @click="$router.back()">取消</button>
       </header>
-      <p class="hot">热门搜索</p>
-      <nav class="hotlist">
-        <span class="active">爆款 行李箱</span>
-        <span>香氛牙膏 谈吐芳香</span>
-        <span>二合一</span>
-        <span>轻弹云朵拖鞋9.9元</span>
-        <span>韩国造  睡眠喷雾</span>
-        <span>热卖 扫拖二合一</span>
-       </nav>
+      <p class="hot" v-if="!searchwords">热门搜索</p>
+      <nav class="hotlist" v-if="!searchwords">
+        <a :class="{active:item.highlight}" v-for="(item,index) in keywordPrefixGuide" :key="index" :href="item.schemeUrl">{{item.keyword}}</a>
+      </nav>
+      <ul class="hotlistguide" v-for="(item,index) in keywordPrefix.data" :key="index">
+        <li class="hotlistguideitem">
+          {{item}}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+import { mapState } from 'vuex';
+  export default {
+    data() {
+      return {
+        searchwords:'',
+      }
+    },
+    mounted() {
+      this.$store.dispatch('getsearchkeywordsguide')
+      this.placeholder = this.$store.state.search.placeholder
+    },
+    computed: {
+      ...mapState({keywordPrefix:(state)=>state.search.keywordPrefix}),
+      ...mapState({keywordPrefixGuide:(state)=>state.search.keywordPrefixGuide.hotKeywordVOList}),
+      ...mapState({placeholder:(state)=>state.search.placeholder})
+    },
+    methods: {
+      search(){ 
+        this.$store.dispatch('getsearchkeywords',this.searchwords=this.placeholder)
+      }
+    },
+  }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
@@ -65,7 +86,7 @@
       .hotlist
         font-size rem(26)
         padding-bottom rem(30)
-        span 
+        a 
           padding rem(8) rem(15)
           border rem(2) solid #333
           border-radius rem(5)
@@ -74,5 +95,11 @@
           &.active 
             border rem(2) solid $red
             color $red
-
+      .hotlistguide
+        width 100% 
+        .hotlistguideitem
+          height rem(100)
+          line-height rem(100)
+          bottom-border-1px(#333)
+          font-size rem(30)
 </style>

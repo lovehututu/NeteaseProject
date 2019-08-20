@@ -95,6 +95,8 @@ import Header from '../../components/Header/Header'
       },
       otherLogin (){
         this.login = true
+        this.loginEmail = false,
+        this.loginIphone = false
       }
     },
   }

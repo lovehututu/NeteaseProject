@@ -1,17 +1,9 @@
 <template>
   <div>
     <ul class="selfShop">
-      <li class="selfShopItem">
+      <li class="selfShopItem" v-for="(item,index) in policyDescList" :key="index">
         <i class="icon iconfont icon-wangyi"></i>
-        <span>网易自营品牌</span>
-      </li>
-      <li class="selfShopItem">
-        <i class="icon iconfont icon-zhiliangcopy"></i>
-        <span>网易自营品牌</span>
-      </li>
-      <li class="selfShopItem">
-        <i class="icon iconfont icon-tuihuo"></i>
-        <span>网易自营品牌</span>
+        <span>{{item.desc}}</span>
       </li>
     </ul> 
   </div>
@@ -19,6 +11,7 @@
 
 <script type="text/ecmascript-6">
   export default {
+    props:['policyDescList']
   }
 </script>
 
