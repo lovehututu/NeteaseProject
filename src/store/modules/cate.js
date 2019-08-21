@@ -8,7 +8,7 @@ import {
 } from '../../api'
 
 const state = {
-  categorys: [], //首页商品分类列表
+  categorys: [], //商品分类列表
 }
 const mutations = {
   [RECEIVE_CATEGORYS](state, info) {
@@ -16,11 +16,11 @@ const mutations = {
   }
 }
 const actions = {
-  async getCategorys({ commit }, callback) {
+  async getCategorys({ commit },cb) {
     const result = await reqCategorys()
     if (result.code === 0) {
-      console.log(result)
       commit(RECEIVE_CATEGORYS, result.data)
+      cb()
     }
   }
 }

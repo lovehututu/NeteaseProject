@@ -4,6 +4,7 @@ import Things from '../pages/Things/Things.vue'
 import ShopCar from '../pages/ShopCar/ShopCar.vue'
 import Personal from '../pages/Personal/Personal.vue'
 import Search from '../pages/Search/Search.vue'
+import CategotyDetail  from '../pages/Category/CategotyDetail.vue'
 
 export default [
   {
@@ -16,9 +17,19 @@ export default [
   {
     path: '/category',
     component: Category, 
+    redirect: '/category/categorydetail/0',
     meta: {
       isShowFooter: true
-    }
+    },
+    children: [
+      {
+        path: '/category/categorydetail/:id',
+        component: CategotyDetail,
+        meta: {
+          isShowFooter: true
+        }
+      }
+    ]
   },
   {
     path: '/things',

@@ -12,7 +12,6 @@ import {
 const state = {
   keywordPrefix: [],
   keywordPrefixGuide:{},
-  placeholder:''
 }
 const mutations = {
   [RECEIVE_KEYS](state, info) {
@@ -20,7 +19,6 @@ const mutations = {
   },
   [RECEIVE_KEYSGUIDE](state, info) {
     state.keywordPrefixGuide = info
-    state.placeholder = info.defaultKeyword.keyword
   }
 }
 const actions = {

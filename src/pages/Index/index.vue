@@ -12,7 +12,7 @@
       <button @click="$router.push('/personal')">登录</button>
     </header>
     <div class="nav">
-      <ul class="catecoryList">
+      <!-- <ul class="catecoryList">
         <li class="catecoryItem active">推荐</li>
         <li class="catecoryItem">居家生活</li>
         <li class="catecoryItem">服饰鞋包</li>
@@ -21,7 +21,8 @@
         <li class="catecoryItem">居家生活</li>
         <li class="catecoryItem">服饰鞋包</li>
         <li class="catecoryItem">美食酒水</li>
-      </ul>
+      </ul> -->
+      <Scorll></Scorll>
       <div class="more" @click="more" >
         <i class="icon iconfont icon-xiala" :class="{showrotate}"></i>
       </div>
@@ -49,7 +50,7 @@
             <span>推荐</span>
           </li>
         </ul>
-  </div>
+      </div>
     </div>
   </div>
 
@@ -126,6 +127,7 @@ import 'swiper/dist/css/swiper.css'
 import NewSwiper from '../../components/NewSwiper/NewSwiper'
 import SelfShop from '../../components/SelfShop/SelfShop'
 import CategoryItem from '../../components/CategoryItem/CategoryItem'
+import Scorll from '../../components/Scorll/Scorll'
 
   export default {
     data() {
@@ -138,7 +140,8 @@ import CategoryItem from '../../components/CategoryItem/CategoryItem'
     components:{
       SelfShop,
       NewSwiper,
-      CategoryItem
+      CategoryItem,
+      Scorll
     },
     methods: {
       more(){
@@ -231,30 +234,30 @@ import CategoryItem from '../../components/CategoryItem/CategoryItem'
       position relative
       overflow:hidden
       width 100%
-      .catecoryList
-        float left
-        display flex
-        padding-right 20%
-        background #fff
-        flex-shrink 0
-        flex-wrap nowrap
-        .catecoryItem
-          position relative
-          margin rem(20) rem(26)
-          font-size rem(30)
-          justify-content space-around
-          white-space nowrap
-          text-align center
-          &.active
-            color $red
-            &::after
-              position absolute
-              bottom rem(-15)
-              left 50% - rem(20)
-              content ''
-              width rem(40)
-              height rem(6)
-              background $red
+      // .catecoryList
+      //   float left
+      //   display flex
+      //   padding-right 20%
+      //   background #fff
+      //   flex-shrink 0
+      //   flex-wrap nowrap
+      //   .catecoryItem
+      //     position relative
+      //     margin rem(20) rem(26)
+      //     font-size rem(30)
+      //     justify-content space-around
+      //     white-space nowrap
+      //     text-align center
+      //     &.active
+      //       color $red
+      //       &::after
+      //         position absolute
+      //         bottom rem(-15)
+      //         left 50% - rem(20)
+      //         content ''
+      //         width rem(40)
+      //         height rem(6)
+      //         background $red
       .more
         float right
         position absolute

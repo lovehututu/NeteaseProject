@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-        <span>网易严选</span>
+        <slot name="title"></slot>
         <i class="iconfont icon-ren" @click="$router.push('/index')"></i>
         <i class="iconfont icon-che" @click="$router.push('/shopcar')"></i>
         <i class="iconfont icon-sousuo" @click="$router.push('/search')"></i>
@@ -25,6 +25,7 @@
     font-size rem(32)
     text-align center
     line-height rem(88)
+    bottom-border-1px(#333)
     i 
       font-size rem(50)
       &.icon-ren

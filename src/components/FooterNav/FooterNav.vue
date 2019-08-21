@@ -4,7 +4,7 @@
       <i class="icon iconfont icon-shouye"></i>
       <span>首页</span>
     </div>
-    <div class="footItem" :class="{active:$route.path==='/category'}" @click="goPage('/category')">
+    <div class="footItem" :class="{active:$route.path=='/category/categorydetail/0'}" @click="goPage('/category')">
       <i class="icon iconfont icon-classifi"></i>
       <span>分类</span>
     </div>

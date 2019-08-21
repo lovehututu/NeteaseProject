@@ -12,11 +12,15 @@ export const reqCategorys = () => axios('/categorys')
 export const reqCategoryInfo = () => axios('/categoryinfo')
 
 //搜索商品
+// export const reqSearch = (keywordPrefix) => axios({
+//   url: BASE+'/xhr/search/searchAutoComplete.json',
+//   params:{
+//   keywordPrefix
+//   }
+// })
 export const reqSearch = (keywordPrefix) => axios({
-  url: BASE+'/xhr/search/searchAutoComplete.json',
-  params:{
-  keywordPrefix
-}})
+  url: BASE + '/xhr/search/searchAutoComplete.json?keywordPrefix=' + keywordPrefix
+})
 
 //默认搜索列表
 export const reqSearchGuide = () => axios(BASE + '/xhr/search/init.json')

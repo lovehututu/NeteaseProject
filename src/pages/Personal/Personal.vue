@@ -1,6 +1,8 @@
 <template>
   <div :class="{bgc}" class="personal">
-    <Header></Header>
+    <Header>
+      <span slot="title">网易严选</span> 
+    </Header>
     <div class="loginShow" v-if="login">
       <div class="loginWay">
         <img src="http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">

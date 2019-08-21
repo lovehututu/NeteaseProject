@@ -3,12 +3,12 @@
     <div class="searchcontent">
       <header class="title">
         <i class="iconfont icon-sousuo"></i>
-        <input type="text" :placeholder="placeholder" @keyup="search" v-model="searchwords" />
+        <input type="text" :placeholder="keywordPrefixGuide.defaultKeyword?keywordPrefixGuide.defaultKeyword.keyword:''" v-model="searchwords" />
         <button class="close" @click="$router.back()">取消</button>
       </header>
       <p class="hot" v-if="!searchwords">热门搜索</p>
       <nav class="hotlist" v-if="!searchwords">
-        <a :class="{active:item.highlight}" v-for="(item,index) in keywordPrefixGuide" :key="index" :href="item.schemeUrl">{{item.keyword}}</a>
+        <a :class="{active:item.highlight}" v-for="(item,index) in keywordPrefixGuide.hotKeywordVOList" :key="index" :href="item.schemeUrl">{{item.keyword}}</a>
       </nav>
       <ul class="hotlistguide" v-for="(item,index) in keywordPrefix.data" :key="index">
         <li class="hotlistguideitem">
@@ -21,24 +21,34 @@
 
 <script type="text/ecmascript-6">
 import { mapState } from 'vuex';
+import { clearTimeout } from 'timers';
   export default {
     data() {
       return {
-        searchwords:'',
+        searchwords:''
       }
     },
     mounted() {
       this.$store.dispatch('getsearchkeywordsguide')
-      this.placeholder = this.$store.state.search.placeholder
     },
     computed: {
-      ...mapState({keywordPrefix:(state)=>state.search.keywordPrefix}),
-      ...mapState({keywordPrefixGuide:(state)=>state.search.keywordPrefixGuide.hotKeywordVOList}),
-      ...mapState({placeholder:(state)=>state.search.placeholder})
+      ...mapState({keywordPrefix:(state)=>state.search.keywordPrefix,
+      keywordPrefixGuide:(state)=>state.search.keywordPrefixGuide,
+      }),
     },
     methods: {
-      search(){ 
-        this.$store.dispatch('getsearchkeywords',this.searchwords=this.placeholder)
+      // search(){ 
+      //   this.$store.dispatch('getsearchkeywords',this.searchwords?this.searchwords:this.placeholder)
+      // }
+    },
+    watch: {
+      searchwords(){
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
+          this.$store.dispatch('getsearchkeywords',this.searchwords?this.searchwords:this.placeholder)
+        }, 2000);
       }
     },
   }
